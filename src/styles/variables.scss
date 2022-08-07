@@ -1,0 +1,19 @@
+$breakpoints: (
+  'xs': 320px,
+  'phone': 375px,
+  'tablet': 768px,
+  'ipad': 1024px,
+  'desktop': 1280px,
+  'large': 1300px,
+  'widescreen': 1600px,
+);
+
+$colors: (
+  // Gray
+  gray-50: #f9fafb,
+  gray-900: #111827,
+
+  // Primary
+  primary-100: #e0e7ff,
+  primary-600: #4f46e5
+);

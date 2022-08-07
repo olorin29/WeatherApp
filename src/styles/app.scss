@@ -1,0 +1,62 @@
+@use 'sass:map';
+
+@import 'vendors';
+@import 'variables';
+@import 'mixins';
+@import 'blocks/blocks';
+@import 'components/components';
+
+html {
+  scroll-behavior: smooth;
+  font-size: 14px;
+
+  ::selection {
+    background-color: map.get($colors, primary-100);
+    color: map.get($colors, primary-600);
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: map.get($colors, primary-600);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: map.get($colors, primary-100);
+  }
+}
+
+.layout {
+  font-family: 'Mulish', sans-serif;
+  color: map.get($colors, gray-900);
+  line-height: 1.6;
+  font-size: 1rem;
+  overflow-x: hidden;
+  position: relative;
+  min-width: 320px;
+  font-weight: 400;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  flex-grow: 1;
+}
+
+.main {
+  padding: 15px;
+  max-width: map.get($breakpoints, xl);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero {
+  position: relative;
+  padding-top: 56.25%;
+  background: yellow url('/images/wheat.jpg') no-repeat center / cover;
+}

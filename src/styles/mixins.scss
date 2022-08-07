@@ -1,0 +1,10 @@
+// to rem
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
+
+// to em
+@function toEm($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}

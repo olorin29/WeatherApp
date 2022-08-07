@@ -1,0 +1,100 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@import '../variables';
+@import '../mixins';
+
+$buttons: (
+  'primary': map.get($colors, primary-600),
+  'dark': map.get($colors, gray-900),
+);
+
+@keyframes button-loading-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.btn {
+  display: inline-block;
+  position: relative;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+  word-break: break-word;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+  background-color: transparent;
+  color: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  transition: all ease-in-out 0.15s;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &[disabled],
+  &.is-loading {
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+    cursor: default;
+  }
+
+  &[disabled] {
+    opacity: 0.75;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    &::after {
+      content: '';
+      width: 1.5em;
+      height: 1.5em;
+      position: absolute;
+      border-width: 2px;
+      border-style: solid;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      animation: button-loading-rotate 1s ease-in-out infinite;
+    }
+  }
+
+  @each $name, $color in $buttons {
+    &.is-#{$name} {
+      background-color: $color;
+      color: white;
+      &:hover {
+        background-color: lighten($color, 3%);
+      }
+      &:active {
+        background-color: darken($color, 3%);
+      }
+      &:focus {
+        box-shadow: 0 0 0 0.15rem rgba($color, 0.4);
+      }
+      &.is-loading {
+        &::after {
+          border-color: rgba(white, 0.15);
+          border-top-color: white;
+        }
+      }
+    }
+  }
+}
